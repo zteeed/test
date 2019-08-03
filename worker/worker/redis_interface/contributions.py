@@ -1,12 +1,13 @@
-from functools import partial
 import itertools
 import json
+from functools import partial
+from multiprocessing.pool import ThreadPool
+
 from worker import log
 from worker.constants import URL
 from worker.parser.contributions import extract_challenges_contributions, extract_solutions_contributions, \
     extract_contributions_page_numbers
 from worker.redis_interface import session, redis_app
-from multiprocessing.pool import ThreadPool
 
 
 def get_challenge_contributions(username, page_index):

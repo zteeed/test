@@ -1,5 +1,6 @@
 import re
 from html import unescape
+
 from lxml import html
 
 from worker.zip import zip_equal
@@ -8,9 +9,9 @@ from worker.zip import zip_equal
 def extract_stats(content):
     tree = html.fromstring(content)
     javascript_text = tree.xpath('//script[@type="text/javascript"]/text()')[-1]
-    pattern = 'evolution_data_total.push\(new Array\("(.*?)",(\d+), "(.*?)", "(.*?)"\)\)'
+    pattern = r'evolution_data_total.push\(new Array\("(.*?)",(\d+), "(.*?)", "(.*?)"\)\)'
     challenges_solved = re.findall(pattern, javascript_text)
-    pattern = 'validation_totale\[(\d+)\]\+\=1;'
+    pattern = r'validation_totale\[(\d+)\]\+\=1;'
     difficulties = re.findall(pattern, javascript_text)
     result = []
     for challenge_data, difficulty in zip_equal(challenges_solved, difficulties):

@@ -10,7 +10,6 @@ class ExhaustedError(Exception):
 def raising_iter(i):
     """Return an iterator that raises an ExhaustedError."""
     raise ExhaustedError(i)
-    yield
 
 
 def terminate_iter(i, iterable):
@@ -34,4 +33,3 @@ def zip_equal(*iterables):
                 pass
             else:
                 raise RuntimeError(f'iterable {i} is longer') from None
-

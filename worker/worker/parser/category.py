@@ -3,8 +3,8 @@ from html import unescape
 
 from lxml import html
 
-from worker.zip import zip_equal
 from worker.parser.exceptions import RootMeParsingError
+from worker.zip import zip_equal
 
 
 def extract_challenge_ids(txt):
@@ -112,7 +112,7 @@ def extract_challenges_authors(content):
         author_names = []
         for author_url_profile in html_element:
             link = author_url_profile.get('href')
-            author_name = re.match(r'\/(.*?)\?', link).group(1)
+            author_name = re.match(r'/(.*?)\?', link).group(1)
             author_names.append(author_name)
         authors.append(author_names)
     return authors
